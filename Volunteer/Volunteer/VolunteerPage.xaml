@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Volunteer.VolunteerPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to the Volunteer Page!"
+                VerticalOptions="Start" 
+                HorizontalOptions="Center" />
+            <Label Text="Select a project below"
+                FontSize="Micro"
+                VerticalOptions="Start"
+                HorizontalOptions="Start" />
+            <ListView x:Name="ProjectList"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
