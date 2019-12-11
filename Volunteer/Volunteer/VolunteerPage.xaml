@@ -5,13 +5,45 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to the Volunteer Page!"
-                VerticalOptions="Start" 
-                HorizontalOptions="Center" />
-            <Label Text="Select a project below"
-                FontSize="Micro"
-                VerticalOptions="Start"
-                HorizontalOptions="Start" />
-            <ListView ItemsSource="{Binding Projects}"/>
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center" 
+                   FontSize="Medium"/>
+            <Label Text="Available Projects"
+                   FontSize="Micro"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center" />
+            <ListView ItemsSource="{Binding Projects}"
+                      HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2"
+                                       Source="{Binding ImageUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="50"
+                                       WidthRequest="100" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontSize="Small"/>
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Location}"
+                                       VerticalOptions="End" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
