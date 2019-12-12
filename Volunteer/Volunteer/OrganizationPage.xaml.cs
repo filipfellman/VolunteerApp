@@ -17,5 +17,9 @@ namespace Volunteer
             InitializeComponent();
             Console.WriteLine("Organization Page reached!");
         }
+        void RegisterButton_Clicked(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

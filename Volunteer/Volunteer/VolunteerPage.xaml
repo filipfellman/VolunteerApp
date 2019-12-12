@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Volunteer.VolunteerPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to the Volunteer Page!"
+        <StackLayout Margin="10,10,10,0">
+            <Label Text="Welcome to the Volunteer Page"
                    VerticalOptions="Start"
                    HorizontalOptions="Center" 
-                   FontSize="Medium"/>
+                   FontSize="Subtitle"/>
             <Label Text="Available Projects"
                    FontSize="Micro"
                    VerticalOptions="Start"
