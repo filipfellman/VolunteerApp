@@ -38,6 +38,7 @@
                                 <Label Grid.Row="1"
                                        Grid.Column="1"
                                        Text="{Binding Location}"
+                                       FontSize="Micro"
                                        VerticalOptions="End" />
                             </Grid>
                         </ViewCell>
