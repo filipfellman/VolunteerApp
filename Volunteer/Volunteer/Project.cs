@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Amazon.DynamoDBv2.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Volunteer
 {
+    [DynamoDBTable("Projects")]
     public class Project
     {
         public string Name { get; set; }
@@ -13,7 +15,7 @@ namespace Volunteer
 
         public override string ToString()
         {
-            return Name;
+            return String.Format("Name:{0}, Location:{1}, ImageUrl:{2}", Name, Location, ImageUrl);
         }
     }
 }

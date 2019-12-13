@@ -1,11 +1,7 @@
 ﻿using Amazon;
 using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.Model;
+using Amazon.DynamoDBv2.DataModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,50 +12,49 @@ namespace Volunteer
     public partial class OrganizationPage : ContentPage
 
     {
-        string tableName = "Projects";
-
         public OrganizationPage()
         {
             InitializeComponent();
             Console.WriteLine("Organization Page reached!");
         }
-        async void RegisterButton_Clicked(object sender, System.EventArgs e)
+        void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
+
+            Project project = new Project()
+
+            {
+                Name = nameEntry.Text,
+                Location = locationEntry.Text,
+                ImageUrl = imageEntry.Text
+            };
+
             try
             {
-                AmazonDynamoDBClient dbClient = new AmazonDynamoDBClient("AKIAQX3PWFSAKJ5ACJXV", "cLWsrB2z9qMniBxx9TmTOX2Yz962mBe8SAqk0o/2", RegionEndpoint.EUWest1);
-                Console.WriteLine("Successfully created client");
-
-                Project project = new Project()
-
-                {
-                    Name = nameEntry.Text,
-                    Location = locationEntry.Text,
-                    ImageUrl = imageEntry.Text
-                };
-
-                Console.WriteLine("Trying to put item");
-
-                var request = new PutItemRequest
-                {
-                    TableName = tableName,
-                    Item = new Dictionary<string, AttributeValue>()
-                {
-                    {"Name" , new AttributeValue { S = project.Name} },
-                    {"Location" , new AttributeValue { S = project.Location} },
-                    {"ImageUrl" , new AttributeValue { S = project.ImageUrl} }
-
-                }
-                };
-                await dbClient.PutItemAsync(request);
-                Console.WriteLine("Successfully PUT ITEM!");
+                SaveProjectToDB(project);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Something went wrong. Reeason: " + ex);
+                Console.WriteLine("Failed to save project to DB. Reeason: " + ex);
                 return;
             }
+
+        }
+
+        async void SaveProjectToDB(Project project)
+        {
+            AmazonDynamoDBClient dbClient = new AmazonDynamoDBClient("AKIAQX3PWFSAKJ5ACJXV", "cLWsrB2z9qMniBxx9TmTOX2Yz962mBe8SAqk0o/2", RegionEndpoint.EUWest1);
+
+            DynamoDBContextConfig config = new DynamoDBContextConfig
+            {
+                Conversion = DynamoDBEntryConversion.V2
+            };
+
+            DynamoDBContext context = new DynamoDBContext(dbClient, config);
+
+            Console.WriteLine("Trying to save project: " + project);
+            await context.SaveAsync(project);
+            Console.WriteLine("Successfully saved project: " + project);
 
         }
     }
