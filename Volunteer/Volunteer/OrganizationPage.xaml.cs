@@ -1,8 +1,10 @@
 ﻿using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
-
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +19,13 @@ namespace Volunteer
             InitializeComponent();
             Console.WriteLine("Organization Page reached!");
         }
+
+        void UploadButton_Clicked(object sender, System.EventArgs e)
+        {
+            Console.WriteLine("LOOOL");
+            UploadPhotoToS3();
+        }
+
         void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
 
@@ -25,7 +34,7 @@ namespace Volunteer
             {
                 Name = nameEntry.Text,
                 Location = locationEntry.Text,
-                ImageUrl = imageEntry.Text
+                //ImageUrl = imageEntry.Text
             };
 
             try
@@ -56,6 +65,22 @@ namespace Volunteer
             await context.SaveAsync(project);
             Console.WriteLine("Successfully saved project: " + project);
 
+        }
+
+        async void UploadPhotoToS3()
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+                return;
+            }
+            var image = await CrossMedia.Current.PickPhotoAsync();
+
+            if (image == null)
+                return;
+
+            Console.WriteLine("Successfully picked image: " + image);
         }
     }
 }

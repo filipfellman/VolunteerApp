@@ -16,8 +16,9 @@
                    Placeholder="Name" />
             <Entry x:Name="locationEntry"
                    Placeholder="Location" />
-            <Entry x:Name="imageEntry"
-                   Placeholder="Image" />
+            <Button Text="Upload Image"
+                    x:Name="uploadButton"
+                    Clicked="UploadButton_Clicked" />
             <Button Text="Register"
                     x:Name="registerButton"
                     Clicked="RegisterButton_Clicked" />
