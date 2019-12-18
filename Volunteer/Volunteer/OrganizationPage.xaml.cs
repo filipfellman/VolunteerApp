@@ -1,10 +1,12 @@
 ﻿using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.S3;
+using Amazon.S3.Model;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,28 +16,27 @@ namespace Volunteer
     public partial class OrganizationPage : ContentPage
 
     {
+        private const string AccessKey = "AKIAQX3PWFSAKJ5ACJXV";
+        private const string SecretKey = "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";
+        Project project = new Project();
+
         public OrganizationPage()
         {
             InitializeComponent();
             Console.WriteLine("Organization Page reached!");
         }
 
-        void UploadButton_Clicked(object sender, System.EventArgs e)
+        async void UploadButton_Clicked(object sender, System.EventArgs e)
         {
-            Console.WriteLine("LOOOL");
-            UploadPhotoToS3();
+            MediaFile photo = await PickPhotoFromGallery();
+            await UploadPhotoToS3Async(photo);
         }
 
         void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
 
-            Project project = new Project()
-
-            {
-                Name = nameEntry.Text,
-                Location = locationEntry.Text,
-                //ImageUrl = imageEntry.Text
-            };
+            project.Name = nameEntry.Text;
+            project.Location = locationEntry.Text;
 
             try
             {
@@ -52,7 +53,7 @@ namespace Volunteer
 
         async void SaveProjectToDB(Project project)
         {
-            AmazonDynamoDBClient dbClient = new AmazonDynamoDBClient("AKIAQX3PWFSAKJ5ACJXV", "cLWsrB2z9qMniBxx9TmTOX2Yz962mBe8SAqk0o/2", RegionEndpoint.EUWest1);
+            AmazonDynamoDBClient dbClient = new AmazonDynamoDBClient(AccessKey, SecretKey, RegionEndpoint.EUWest1);
 
             DynamoDBContextConfig config = new DynamoDBContextConfig
             {
@@ -67,20 +68,53 @@ namespace Volunteer
 
         }
 
-        async void UploadPhotoToS3()
+        async Task<MediaFile> PickPhotoFromGallery()
         {
             await CrossMedia.Current.Initialize();
+
             if (!CrossMedia.Current.IsPickPhotoSupported)
-            {
                 await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
-                return;
+
+            MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
+
+            if (photo == null)
+                await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
+
+            await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
+
+            Console.WriteLine("Successfully picked image: " + photo);
+            return photo;
+        }
+
+        private async Task UploadPhotoToS3Async(MediaFile photo)
+        {
+            IAmazonS3 s3Client = new AmazonS3Client(AccessKey, SecretKey, RegionEndpoint.EUWest1);
+            try
+            {
+                var putRequest = new PutObjectRequest
+                {
+                    BucketName = "lol",
+                    Key = "lol",
+                    FilePath = photo.Path,
+                    ContentType = "text/plain"
+
+                };
+
+                await s3Client.PutObjectAsync(putRequest);
+
             }
-            var image = await CrossMedia.Current.PickPhotoAsync();
-
-            if (image == null)
-                return;
-
-            Console.WriteLine("Successfully picked image: " + image);
+            catch (AmazonS3Exception e)
+            {
+                Console.WriteLine(
+                        "Error encountered ***. Message:'{0}' when writing an object"
+                        , e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(
+                    "Unknown encountered on server. Message:'{0}' when writing an object"
+                    , e.Message);
+            }
         }
     }
 }
