@@ -6,6 +6,7 @@ using Amazon.S3.Model;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,11 +27,12 @@ namespace Volunteer
             Console.WriteLine("Organization Page reached!");
         }
 
-        async void UploadButton_Clicked(object sender, System.EventArgs e)
-        {
-            MediaFile photo = await PickPhotoFromGallery();
-            await UploadPhotoToS3Async(photo);
-        }
+        //async void UploadButton_Clicked(object sender, System.EventArgs e)
+        //{
+        //    MediaFile photo = await PickPhotoFromGallery();
+        //    project.ImageUrl = "https://volunteer-project-images.s3-eu-west-1.amazonaws.com/18645360_1870310266555512_2921338941154000896_a.jpg";
+        //    await UploadPhotoToS3Async(photo);
+        //}
 
         void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
@@ -68,53 +70,54 @@ namespace Volunteer
 
         }
 
-        async Task<MediaFile> PickPhotoFromGallery()
-        {
-            await CrossMedia.Current.Initialize();
+        //async Task<MediaFile> PickPhotoFromGallery()
+        //{
+        //    await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsPickPhotoSupported)
-                await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+        //    if (!CrossMedia.Current.IsPickPhotoSupported)
+        //        await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
 
-            MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
+        //    MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
 
-            if (photo == null)
-                await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
+        //    if (photo == null)
+        //        await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
 
-            await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
+        //    await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
 
-            Console.WriteLine("Successfully picked image: " + photo);
-            return photo;
-        }
+        //    Console.WriteLine("Successfully picked image: " + photo);
+        //    return photo;
+        //}
 
-        private async Task UploadPhotoToS3Async(MediaFile photo)
-        {
-            IAmazonS3 s3Client = new AmazonS3Client(AccessKey, SecretKey, RegionEndpoint.EUWest1);
-            try
-            {
-                var putRequest = new PutObjectRequest
-                {
-                    BucketName = "lol",
-                    Key = "lol",
-                    FilePath = photo.Path,
-                    ContentType = "text/plain"
+        //private async Task UploadPhotoToS3Async(MediaFile photo)
+        //{
+        //    IAmazonS3 s3Client = new AmazonS3Client(AccessKey, SecretKey, RegionEndpoint.EUWest1);
+        //    try
+        //    {
+        //        //FileInfo fi = new FileInfo(photo.Path);
+        //        //Image image = photo;
+        //        //var putRequest = new PutObjectRequest
+        //        //{
+        //        //    BucketName = "lol",
+        //        //    Key = fi.Name,
+        //        //    FilePath = photo.Path,
+        //        //    ContentType = fi.GetType
+        //        //};
 
-                };
+        //        //await s3Client.PutObjectAsync(putRequest);
 
-                await s3Client.PutObjectAsync(putRequest);
-
-            }
-            catch (AmazonS3Exception e)
-            {
-                Console.WriteLine(
-                        "Error encountered ***. Message:'{0}' when writing an object"
-                        , e.Message);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(
-                    "Unknown encountered on server. Message:'{0}' when writing an object"
-                    , e.Message);
-            }
-        }
+        //    }
+        //    catch (AmazonS3Exception e)
+        //    {
+        //        Console.WriteLine(
+        //                "Error encountered ***. Message:'{0}' when writing an object"
+        //                , e.Message);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(
+        //            "Unknown encountered on server. Message:'{0}' when writing an object"
+        //            , e.Message);
+        //    }
+        //}
     }
 }
