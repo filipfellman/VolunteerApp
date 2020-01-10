@@ -59,7 +59,7 @@ namespace Volunteer
 
             foreach (Project project in allProjects)
             {
-                //project.StandardImage = 
+                project.Image = ImageSource.FromFile("volunteerimage.png");
                 Projects.Add(project);
             }
             BindingContext = this;
