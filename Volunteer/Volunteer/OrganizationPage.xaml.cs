@@ -57,6 +57,7 @@ namespace Volunteer
             Console.WriteLine("Trying to save project: " + project);
             await context.SaveAsync(project);
             Console.WriteLine("Successfully saved project: " + project);
+            await DisplayAlert("Success", "Successfully registered project " + project.Name, "OK");
 
         }
 
