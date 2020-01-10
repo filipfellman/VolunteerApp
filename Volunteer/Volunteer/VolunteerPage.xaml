@@ -27,7 +27,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.RowSpan="2"
-                                       Source="{Binding ImageUrl}"
+                                       Source="{Binding Image}"
                                        Aspect="AspectFill"
                                        HeightRequest="50"
                                        WidthRequest="100" />
