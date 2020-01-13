@@ -57,7 +57,11 @@ namespace Volunteer
 
             foreach (Organization organization in allOrganizations)
             {
-                //organization.Image = ImageSource.FromFile("volunteerimage.png");
+                if (organization.Image == null)
+                {
+                    organization.Image = ImageSource.FromFile("volunteerimage.png");
+
+                }
                 Organizations.Add(organization);
             }
             BindingContext = this;

@@ -32,20 +32,18 @@ namespace Volunteer
             if (string.IsNullOrEmpty(nameEntry.Text))
             {
                 await DisplayAlert("Error", "Please fill in required fields", "OK");
+                //TODO: Change border on fields to red
                 return;
             }
 
             if (string.IsNullOrEmpty(locationEntry.Text))
             {
                 await DisplayAlert("Error", "Please fill in required fields", "OK");
+                //TODO: Change border on fields to red
                 return;
             }
 
-            //if (string.IsNullOrEmpty(locationEntry.Text))
-            //{
-            //    await DisplayAlert("Error", "Please fill in required fields", "OK");
-            //    return;
-            //}
+            //TODO: Check for image?
 
             //organization.Domain = domainPicker.SelectedItem.ToString();
 
@@ -65,6 +63,8 @@ namespace Volunteer
         async void UploadButton_Clicked(object sender, System.EventArgs e)
         {
             MediaFile photo = await PickPhotoFromGallery();
+
+            //TODO: How to upload to s3 from here and then store link in dynamodb field
 
             //organization.Image = photo;
         }
