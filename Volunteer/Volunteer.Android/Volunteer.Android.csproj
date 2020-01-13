@@ -90,6 +90,13 @@
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\volunteerimage.png" />
+    <AndroidResource Include="Resources\drawable\org1.png" />
+    <AndroidResource Include="Resources\drawable\proj1.png" />
+    <AndroidResource Include="Resources\drawable\dom1.png" />
+    <AndroidResource Include="Resources\drawable\hopewwsweden.jpeg" />
+    <AndroidResource Include="Resources\drawable\redcross.jpg" />
+    <AndroidResource Include="Resources\drawable\raddabarnen.png" />
+    <AndroidResource Include="Resources\drawable\sharefood.jpg" />
     <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\launcher_foreground.png" />

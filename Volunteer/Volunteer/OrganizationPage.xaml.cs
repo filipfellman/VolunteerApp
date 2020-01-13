@@ -16,7 +16,7 @@ namespace Volunteer
     {
         private const string AccessKey = "AKIAQX3PWFSAKJ5ACJXV";
         private const string SecretKey = "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";
-        Project project = new Project();
+        Organization organization = new Organization();
 
         public OrganizationPage()
         {
@@ -24,26 +24,53 @@ namespace Volunteer
             Console.WriteLine("Organization Page reached!");
         }
 
-        void RegisterButton_Clicked(object sender, System.EventArgs e)
+        async void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
 
-            project.Name = nameEntry.Text;
-            project.Location = locationEntry.Text;
+            organization.Name = nameEntry.Text;
+            organization.Location = locationEntry.Text;
+            if (string.IsNullOrEmpty(nameEntry.Text))
+            {
+                await DisplayAlert("Error", "Please fill in required fields", "OK");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(locationEntry.Text))
+            {
+                await DisplayAlert("Error", "Please fill in required fields", "OK");
+                return;
+            }
+
+            //if (string.IsNullOrEmpty(locationEntry.Text))
+            //{
+            //    await DisplayAlert("Error", "Please fill in required fields", "OK");
+            //    return;
+            //}
+
+            //organization.Domain = domainPicker.SelectedItem.ToString();
 
             try
             {
-                SaveProjectToDB(project);
+                SaveOrganizationToDB(organization);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Failed to save project to DB. Reeason: " + ex);
+                Console.WriteLine("Failed to save organization to DB. Reeason: " + ex);
                 return;
             }
 
         }
 
-        async void SaveProjectToDB(Project project)
+        async void UploadButton_Clicked(object sender, System.EventArgs e)
+        {
+            MediaFile photo = await PickPhotoFromGallery();
+
+            //organization.Image = photo;
+        }
+
+
+        async void SaveOrganizationToDB(Organization organization)
         {
             AmazonDynamoDBClient dbClient = new AmazonDynamoDBClient(AccessKey, SecretKey, RegionEndpoint.EUWest1);
 
@@ -54,10 +81,10 @@ namespace Volunteer
 
             DynamoDBContext context = new DynamoDBContext(dbClient, config);
 
-            Console.WriteLine("Trying to save project: " + project);
-            await context.SaveAsync(project);
-            Console.WriteLine("Successfully saved project: " + project);
-            await DisplayAlert("Success", "Successfully registered project " + project.Name, "OK");
+            Console.WriteLine("Trying to save organization: " + organization);
+            await context.SaveAsync(organization);
+            Console.WriteLine("Successfully saved organization: " + organization);
+            await DisplayAlert("Success", "Successfully registered organization \"" + organization.Name + "\"", "OK");
 
         }
 
@@ -68,15 +95,21 @@ namespace Volunteer
             if (!CrossMedia.Current.IsPickPhotoSupported)
                 await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
 
-            MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
+            var mediaOptions = new PickMediaOptions()
+            {
+                PhotoSize = PhotoSize.Small
+            };
 
-            if (photo == null)
+            MediaFile pickedPhotoFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+
+            if (pickedPhotoFile == null)
                 await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
 
-            await DisplayAlert("Failed to fetch photo", "please try again or restart app", "OK");
+            Console.WriteLine("Successfully picked image: " + pickedPhotoFile);
 
-            Console.WriteLine("Successfully picked image: " + photo);
-            return photo;
+            selectedImage.Source = ImageSource.FromStream(() => pickedPhotoFile.GetStream());
+
+            return pickedPhotoFile;
         }
     }
 }

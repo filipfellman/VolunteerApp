@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Volunteer.OrgPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<GridView Margin="12,60" ItemsSource={Binding ItemsList}>
+                <DataGrid ItemsSource="{Binding Organization}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Image"
+                                            Binding="{Binding Image}" />
+                        --><!--<DataGridTextColumn Header="Body"
+                                        Binding="{Binding BodyView}" />
+                    <DataGridTextColumn Header="Author"
+                                        Binding="{Binding AuthorView}" />--><!--
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GridView>-->
+
+            <ListView ItemsSource="{Binding Organizations}"
+                      HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="70" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Image}"
+                                       HeightRequest="70"
+                                       WidthRequest="80" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       VerticalOptions="Center"
+                                       FontSize="Small" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Location}"
+                                       FontSize="Micro"
+                                       VerticalOptions="End" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<Grid Margin="30,30,30,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="70" />
+                    --><!--<RowDefinition Height="100" />--><!--
+                </Grid.RowDefinitions>
+                <ImageButton Grid.Column="0"
+                             Grid.Row="0"
+                             BackgroundColor="Transparent"
+                             Source="hopewwsweden.jpg"
+                             Clicked="HopeSwedenClicked">
+                </ImageButton>
+                <ImageButton Grid.Column="1"
+                             Grid.Row="0"
+                             BackgroundColor="Transparent"
+                             Source="volunteerimage.png">
+                </ImageButton>
+                <ImageButton Grid.Column="2"
+                             Grid.Row="0"
+                             BackgroundColor="Transparent"
+                             Source="raddabarnen.png">
+                </ImageButton>
+                <ImageButton Grid.Column="0"
+                             Grid.Row="1"
+                             BackgroundColor="Transparent"
+                             Source="redcross.jpg">
+                </ImageButton>
+                <ImageButton Grid.Column="1"
+                             Grid.Row="1"
+                             BackgroundColor="Transparent"
+                             Source="sharefood.jpg">
+                </ImageButton>
+            </Grid>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

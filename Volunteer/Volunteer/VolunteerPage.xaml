@@ -1,50 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Volunteer.VolunteerPage">
     <ContentPage.Content>
-        <StackLayout Margin="10,10,10,0">
+        <StackLayout Margin="10,10,10,20">
             <Label Text="Welcome to the Volunteer Page"
                    VerticalOptions="Start"
-                   HorizontalOptions="Center" 
-                   FontSize="Subtitle"/>
-            <Label Text="Available Projects"
-                   FontSize="Micro"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Center" />
-            <ListView ItemsSource="{Binding Projects}"
-                      HasUnevenRows="true">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.RowSpan="2"
-                                       Source="{Binding Image}"
-                                       Aspect="AspectFill"
-                                       HeightRequest="50"
-                                       WidthRequest="100" />
-                                <Label Grid.Column="1"
-                                       Text="{Binding Name}"
-                                       FontAttributes="Bold"
-                                       FontSize="Small"/>
-                                <Label Grid.Row="1"
-                                       Grid.Column="1"
-                                       Text="{Binding Location}"
-                                       FontSize="Micro"
-                                       VerticalOptions="End" />
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                   HorizontalOptions="Center"
+                   FontSize="Subtitle" />
+            <ImageButton Source="org1.png"
+                         Margin="0,5,0,0"
+                         BackgroundColor="Transparent"
+                         WidthRequest="90"
+                         HeightRequest="90"
+                         FlexLayout.AlignSelf="Center"
+                         FlexLayout.Grow="1"
+                         Aspect="AspectFit"
+                         Clicked="OrganizationsClicked">
+            </ImageButton>
+            <ImageButton Source="proj1.png"
+                         BackgroundColor="Transparent"
+                         WidthRequest="90"
+                         HeightRequest="90"
+                         FlexLayout.AlignSelf="Center"
+                         FlexLayout.Grow="1"
+                         Aspect="AspectFit"
+                         Clicked="ProjectsClicked">
+            </ImageButton>
+            <ImageButton Source="dom1.png"
+                         BackgroundColor="Transparent"
+                         WidthRequest="90"
+                         HeightRequest="90"
+                         FlexLayout.AlignSelf="Center"
+                         FlexLayout.Grow="1"
+                         Aspect="AspectFit">
+            </ImageButton>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
