@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Volunteer"
              x:Class="Volunteer.MainPage">
 
-    <StackLayout VerticalOptions="Center">
+    <StackLayout VerticalOptions="Center" Margin="10,10,10,0">
         <Label Text="Enter as"
                x:Name="EnterLabel"
                FontSize="30"

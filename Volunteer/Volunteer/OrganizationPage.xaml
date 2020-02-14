@@ -3,10 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Volunteer.OrganizationPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to the Organization Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Margin="10,10,10,0">
+                <Label Text="Welcome to the Organization Page"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       FontSize="Small" />
+                <Label Text="Register Organization"
+                       FontSize="Micro"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center" />
+                <Entry x:Name="nameEntry"
+                       Placeholder="Name" />
+                <Entry x:Name="locationEntry"
+                       Placeholder="Location" />
+                <!--<Picker x:Name="domainPicker"
+                    Title="Domain"
+                    SelectedIndex="{Binding Domain}">
+                <Picker.Items>
+                    <x:String>Food</x:String>
+                    <x:String>Health</x:String>
+                    <x:String>Animals</x:String>
+                    <x:String>Nature</x:String>
+                    <x:String>Integration</x:String>
+                    <x:String>Kids</x:String>
+                </Picker.Items>
+            </Picker>-->
+                <Image x:Name="selectedImage" />
+                <Button Text="Upload Image"
+                        x:Name="imageButton"
+                        Clicked="UploadButton_Clicked" />
+                <Button Text="Register"
+                        x:Name="registerButton"
+                        Clicked="RegisterButton_Clicked" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
