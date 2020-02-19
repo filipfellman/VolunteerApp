@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Volunteer"
-             x:Class="Volunteer.MainPage">
-
+             x:Class="Volunteer.MainPage"
+             BackgroundImageSource="firstpagebg.png">
     <StackLayout VerticalOptions="Center" Margin="10,10,10,0">
         <Label Text="Enter as"
                x:Name="EnterLabel"

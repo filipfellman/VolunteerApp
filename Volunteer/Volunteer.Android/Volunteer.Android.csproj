@@ -96,6 +96,7 @@
     <AndroidResource Include="Resources\drawable\hopewwsweden.jpeg" />
     <AndroidResource Include="Resources\drawable\redcross.jpg" />
     <AndroidResource Include="Resources\drawable\raddabarnen.png" />
+    <AndroidResource Include="Resources\drawable\firstpagebg.png" />
     <AndroidResource Include="Resources\drawable\sharefood.jpg" />
     <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />

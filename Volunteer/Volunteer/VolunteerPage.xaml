@@ -1,6 +1,7 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Volunteer.VolunteerPage">
+             x:Class="Volunteer.VolunteerPage"
+             BackgroundImageSource="firstpagebg.png">
     <ContentPage.Content>
         <StackLayout Margin="10,10,10,20">
             <Label Text="Welcome to the Volunteer Page"
