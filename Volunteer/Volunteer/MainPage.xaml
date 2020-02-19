@@ -4,8 +4,11 @@
              xmlns:local="clr-namespace:Volunteer"
              x:Class="Volunteer.MainPage"
              BackgroundImageSource="firstpagebg.png">
-    <StackLayout VerticalOptions="Center" Margin="10,10,10,0">
-        <Label Text="Enter as"
+    <StackLayout VerticalOptions="Start" Margin="10,30,10,0">
+        <Image Source="logga.png"
+               HeightRequest="80"
+               />
+        <!--<Label Text="Enter as"
                x:Name="EnterLabel"
                FontSize="30"
                HorizontalOptions="Center"
@@ -18,7 +21,7 @@
         <Button Text="Voluntary Organization"
                 Clicked="OrganizationClicked"
                 FontSize="15"
-                />
+                />-->
     </StackLayout>
 
 </ContentPage>
