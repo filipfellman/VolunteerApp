@@ -11,9 +11,48 @@ namespace Volunteer
     {
         public MainPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
-        private NavigationPage navigationPage = new NavigationPage();
+        //private NavigationPage navigationPage = new NavigationPage();
+
+        private void LoginClicked(object sender, EventArgs args)
+        {
+            try
+            {
+                Console.WriteLine("LOGIN clicked!");
+                DisplayAlert("TBI", "To be implemented...", "Oh, okay...");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private void RegisterClicked(object sender, EventArgs args)
+        {
+            try
+            {
+                Console.WriteLine("Registed clicked!");
+                DisplayAlert("TBI", "To be implemented...", "Oh, okay...");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+       private void ContinueClicked(object sender, EventArgs args)
+        {
+            try
+            {
+                Console.WriteLine("Continue clicked!");
+                DisplayAlert("TBI", "To be implemented...", "Oh, okay...");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private async void VolunteerClicked(object sender, EventArgs e)
         {
@@ -26,5 +65,6 @@ namespace Volunteer
             Console.WriteLine("Voluntary Organization clicked!");
             await Navigation.PushAsync(new OrganizationPage());
         }
+
     }
 }

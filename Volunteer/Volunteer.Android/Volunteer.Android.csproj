@@ -98,7 +98,13 @@
     <AndroidResource Include="Resources\drawable\raddabarnen.png" />
     <AndroidResource Include="Resources\drawable\firstpagebg.png" />
     <AndroidResource Include="Resources\drawable\logga.png" />
+    <AndroidResource Include="Resources\drawable\lager5.png" />
+    <AndroidResource Include="Resources\drawable\lager5_1.png" />
     <AndroidResource Include="Resources\drawable\sharefood.jpg" />
+    <AndroidResource Include="Resources\drawable\combined.png" />
+    <AndroidResource Include="Resources\drawable\welcome.png" />
+    <AndroidResource Include="Resources\drawable\register.png" />
+    <AndroidResource Include="Resources\drawable\login.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\launcher_foreground.png" />
@@ -114,7 +120,6 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
-    <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Volunteer\Volunteer.csproj">
@@ -124,6 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\cont.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

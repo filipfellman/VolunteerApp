@@ -4,11 +4,19 @@
              xmlns:local="clr-namespace:Volunteer"
              x:Class="Volunteer.MainPage"
              BackgroundImageSource="firstpagebg.png">
-    <StackLayout VerticalOptions="Start" Margin="10,30,10,0">
+    <!--<StackLayout VerticalOptions="Start" Margin="10,30,0,0">
         <Image Source="logga.png"
                HeightRequest="80"
                />
-        <!--<Label Text="Enter as"
+        <Image Source="lager5_1.png"
+               WidthRequest="250"
+               HorizontalOptions="EndAndExpand" Aspect="AspectFit" VerticalOptions="Fill"
+               />
+        <Image Source="lager5.png"
+               WidthRequest="200"
+               VerticalOptions="StartAndExpand"
+               />
+        --><!--<Label Text="Enter as"
                x:Name="EnterLabel"
                FontSize="30"
                HorizontalOptions="Center"
@@ -21,7 +29,69 @@
         <Button Text="Voluntary Organization"
                 Clicked="OrganizationClicked"
                 FontSize="15"
-                />-->
-    </StackLayout>
+                />--><!--
+    </StackLayout>-->
+    <Grid Margin="0,10,0,20" IsTabStop="True" InputTransparent="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0"
+               Grid.Row="0"
+               Source="logga.png"
+               />
+        <Image Grid.Column="0"
+               Grid.Row="1"
+               HorizontalOptions="Center"
+               Source="combined.png"
+               Margin="0,5,0,0"
+               Aspect="AspectFill"
+               />
+        <Image Grid.Column="0"
+               Grid.Row="1"
+               Source="welcome.png"
+               VerticalOptions="Start"
+               Margin="130,80,130,0"
+               />
+        <Image Grid.Column="0"
+               Grid.Row="1"
+               Source="login.png"
+               VerticalOptions="End"
+               Margin="160,0,160,80"
+               x:Name="loginButton">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                       Tapped="LoginClicked"
+                       NumberOfTapsRequired="1"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Image Grid.Column="0"
+               Grid.Row="1"
+               Source="register.png"
+               VerticalOptions="EndAndExpand"
+               Margin="160,100,160,30">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                       Tapped="RegisterClicked"
+                       NumberOfTapsRequired="1"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <Image Grid.Column="0"
+               Grid.Row="2"
+               Source="cont.png"
+               VerticalOptions="StartAndExpand"
+               Margin="120,5,120,0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                       Tapped="ContinueClicked"
+                       NumberOfTapsRequired="1"/>
+            </Image.GestureRecognizers>
+        </Image>
+    </Grid>
 
 </ContentPage>
