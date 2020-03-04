@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Volunteer
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class AuthInfoPage : ContentPage
     {
-        public event EventHandler<string> LoginChanged;
-        public LoginPage()
+        public AuthInfoPage(string name, string email, string preferredUsername)
         {
             InitializeComponent();
-        }
-
-        private async void LoginClicked(object sender, EventArgs args)
-        {
-            
+            _nameLabel.Text = name;
+            _emailLabel.Text = email;
+            _preferredUsernameLabel.Text = preferredUsername;
         }
     }
 }

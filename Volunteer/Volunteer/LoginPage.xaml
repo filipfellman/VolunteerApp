@@ -8,8 +8,16 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Login page, needs to be implemented..."
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+            <StackLayout x:Name="LoginPanel">
+                <Button Clicked="LoginClicked" Text="Login"></Button>
+                <Label x:Name="ErrorLabel" TextColor="#FF0000"></Label>
+            </StackLayout>
+            <!--<StackLayout x:Name="LogoutPanel" IsVisible="False" Orientation="Horizontal">
+                <Label x:Name="LoggedInLabel" ></Label>
+                <Button Clicked="LogoutClicked" Text="Logout"></Button>
+            </StackLayout>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

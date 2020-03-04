@@ -5,5 +5,15 @@
       <provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
         <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
       </provider>
+      <!-- Callback from authentication screen -->
+      <activity android:name="net.openid.appauth.RedirectUriReceiverActivity">
+        <!-- Filter which captures custom scheme based redirects for Okta authorization requests. -->
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="com.okta.dev-212447:/callback"/>
+        </intent-filter>
+      </activity>
     </application>
 </manifest>
